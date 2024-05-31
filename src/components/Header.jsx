@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+import { useLocation } from "react-router-dom";
+import { disablePageScroll, enablePageScroll } from "scroll-lock";
+import { brainwave } from "../assets";
+import { navigation } from "../constant";
+import Button from "./Button";
+import MenuSvg from '../assets/svg/MenuSvg';
+import { HamburgerMenu } from "./design/Header";
+
+const Header = () => {
+    const coverURL = "https://seeklogo.com/images/S/Star_Wars-logo-371C196CE6-seeklogo.com.png"; 
+    const location = useLocation();
+    const [openNavigation, setOpenNavigation] = useState(false);
+
+    const toggleNavigation = () => {
+        if (openNavigation) {
+            setOpenNavigation(false);
+            enablePageScroll();
+        } else {
+            setOpenNavigation(true);
+            disablePageScroll();
+        }
+    };
+
+    const handleClick = () => {
+        if (!openNavigation) return;
+
+        enablePageScroll();
+        setOpenNavigation(false);
+    };
+
+    return (
+        <>
+            <div className={`fixed top-0 left-0 w-full z-50 border-b border-n-6 lg:bg-n-8/90 lg:backdrop-blur-sm ${openNavigation ? 'bg-n-8' : 'bg-n-8/90 backdrop-blur-sm'}`}>
+                <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
+                    <a className="block w-[12rem] xl:mr-8" href="/">
+                        <img className="py-5 invert transition hover:sepia" src={coverURL} width={190} height={40} alt="StarWars" />
+                    </a>
+
+                    <nav className={`${openNavigation ? "flex" : "hidden"} fixed top-[5rem] left-0 right-0 bottom-0 bg-n-8 lg:static lg:flex lg:mx-auto lg:bg-transparent`}>
+                        <div className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row">
+                            {navigation.map((item) => (
+                                <a 
+                                    key={item.id} 
+                                    href={item.url} 
+                                    onClick={handleClick}
+                                    className={`block relative font-code text-2xl uppercase text-n-1 px-4 py-2 lg:py-0 text-white transition color hover:text-yellow-500 ${item.onlyMobile ? "lg:hidden" : ""} lg:px-6 lg:py-6 md:py-8 lg:-mr-0.25 lg:text-base lg:font-semibold ${item.url === location.hash ? 'z-2 lg:text-n-1' : 'lg:text-n-1/50'} lg:leading-5 lg:hover:text-n-1 xl:px-12`}
+                                >
+                                    {item.title}
+                                </a>
+                            ))}
+                            <input 
+                                type="search" 
+                                className="mt-2 px-4 py-2 rounded-3xl bg-slate-500 text-black border-black active:outline-none lg:mt-0 lg:ml-3 placeholder-inherit opacity-50 transition hover:opacity-75" 
+                                placeholder="search..." 
+                            />
+                            <HamburgerMenu />
+                        </div>
+                    </nav>
+
+                    <a href="#signup" className="button hidden mr-8 text-n-1/50 transition-colors hover:text-n-1 lg:block lg:text-base">
+                        New Account
+                    </a>
+
+                    <Button className="hidden lg:flex lg:text-base" href="#login">
+                        Sign Up
+                    </Button>
+
+                    <Button className="ml-auto lg:hidden" px="px-3" onClick={toggleNavigation}>
+                        <MenuSvg openNavigation={openNavigation} />
+                    </Button>
+                </div>
+            </div>
+        </>
+    );
+};
+
+export default Header;
