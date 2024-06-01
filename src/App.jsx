@@ -15,9 +15,9 @@ const App = () => {
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
         <Header />
         <Routes>
-          <Route path="star-wars-web/" element={<Hero />} />
-          <Route path="star-wars-web/planets" element={<Planets />} />
-          <Route path="star-wars-web/characters" element={<Characters />} />
+          <Route path="/" element={<Hero />} />
+          <Route path="/planets" element={<Planets />} />
+          <Route path="/characters" element={<Characters />} />
         </Routes>
       </div>
       <ButtonGradient />
