@@ -27,4 +27,8 @@
     cd star-wars-web
 3. Установите зависимости:
    ```sh
+    npm install
+
+4. Запустите локальный хост:
+   ```sh
     npm run dev
