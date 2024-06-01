@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Heading from "../components/Heading";
 import Section from "../components/Section";
 import Arrow from "../assets/svg/Arrow";
@@ -8,276 +8,56 @@ import { heroBackground, robot } from "../assets";
 import { BottomLine } from '../components/design/Hero';
 
 const Characters = () => {
-    const planets = {
-        "count": 82, 
-        "next": "https://swapi.dev/api/people/?page=2", 
-        "previous": null, 
-        "results": [
-            {
-                "name": "Luke Skywalker", 
-                "height": "172", 
-                "mass": "77", 
-                "hair_color": "blond", 
-                "skin_color": "fair", 
-                "eye_color": "blue", 
-                "birth_year": "19BBY", 
-                "gender": "male", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/2/", 
-                    "https://swapi.dev/api/films/3/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [], 
-                "vehicles": [
-                    "https://swapi.dev/api/vehicles/14/", 
-                    "https://swapi.dev/api/vehicles/30/"
-                ], 
-                "starships": [
-                    "https://swapi.dev/api/starships/12/", 
-                    "https://swapi.dev/api/starships/22/"
-                ], 
-                "created": "2014-12-09T13:50:51.644000Z", 
-                "edited": "2014-12-20T21:17:56.891000Z", 
-                "url": "https://swapi.dev/api/people/1/"
-            }, 
-            {
-                "name": "C-3PO", 
-                "height": "167", 
-                "mass": "75", 
-                "hair_color": "n/a", 
-                "skin_color": "gold", 
-                "eye_color": "yellow", 
-                "birth_year": "112BBY", 
-                "gender": "n/a", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/2/", 
-                    "https://swapi.dev/api/films/3/", 
-                    "https://swapi.dev/api/films/4/", 
-                    "https://swapi.dev/api/films/5/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [
-                    "https://swapi.dev/api/species/2/"
-                ], 
-                "vehicles": [], 
-                "starships": [], 
-                "created": "2014-12-10T15:10:51.357000Z", 
-                "edited": "2014-12-20T21:17:50.309000Z", 
-                "url": "https://swapi.dev/api/people/2/"
-            }, 
-            {
-                "name": "R2-D2", 
-                "height": "96", 
-                "mass": "32", 
-                "hair_color": "n/a", 
-                "skin_color": "white, blue", 
-                "eye_color": "red", 
-                "birth_year": "33BBY", 
-                "gender": "n/a", 
-                "homeworld": "https://swapi.dev/api/planets/8/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/2/", 
-                    "https://swapi.dev/api/films/3/", 
-                    "https://swapi.dev/api/films/4/", 
-                    "https://swapi.dev/api/films/5/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [
-                    "https://swapi.dev/api/species/2/"
-                ], 
-                "vehicles": [], 
-                "starships": [], 
-                "created": "2014-12-10T15:11:50.376000Z", 
-                "edited": "2014-12-20T21:17:50.311000Z", 
-                "url": "https://swapi.dev/api/people/3/"
-            }, 
-            {
-                "name": "Darth Vader", 
-                "height": "202", 
-                "mass": "136", 
-                "hair_color": "none", 
-                "skin_color": "white", 
-                "eye_color": "yellow", 
-                "birth_year": "41.9BBY", 
-                "gender": "male", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/2/", 
-                    "https://swapi.dev/api/films/3/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [], 
-                "vehicles": [], 
-                "starships": [
-                    "https://swapi.dev/api/starships/13/"
-                ], 
-                "created": "2014-12-10T15:18:20.704000Z", 
-                "edited": "2014-12-20T21:17:50.313000Z", 
-                "url": "https://swapi.dev/api/people/4/"
-            }, 
-            {
-                "name": "Leia Organa", 
-                "height": "150", 
-                "mass": "49", 
-                "hair_color": "brown", 
-                "skin_color": "light", 
-                "eye_color": "brown", 
-                "birth_year": "19BBY", 
-                "gender": "female", 
-                "homeworld": "https://swapi.dev/api/planets/2/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/2/", 
-                    "https://swapi.dev/api/films/3/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [], 
-                "vehicles": [
-                    "https://swapi.dev/api/vehicles/30/"
-                ], 
-                "starships": [], 
-                "created": "2014-12-10T15:20:09.791000Z", 
-                "edited": "2014-12-20T21:17:50.315000Z", 
-                "url": "https://swapi.dev/api/people/5/"
-            }, 
-            {
-                "name": "Owen Lars", 
-                "height": "178", 
-                "mass": "120", 
-                "hair_color": "brown, grey", 
-                "skin_color": "light", 
-                "eye_color": "blue", 
-                "birth_year": "52BBY", 
-                "gender": "male", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/5/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [], 
-                "vehicles": [], 
-                "starships": [], 
-                "created": "2014-12-10T15:52:14.024000Z", 
-                "edited": "2014-12-20T21:17:50.317000Z", 
-                "url": "https://swapi.dev/api/people/6/"
-            }, 
-            {
-                "name": "Beru Whitesun lars", 
-                "height": "165", 
-                "mass": "75", 
-                "hair_color": "brown", 
-                "skin_color": "light", 
-                "eye_color": "blue", 
-                "birth_year": "47BBY", 
-                "gender": "female", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/5/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [], 
-                "vehicles": [], 
-                "starships": [], 
-                "created": "2014-12-10T15:53:41.121000Z", 
-                "edited": "2014-12-20T21:17:50.319000Z", 
-                "url": "https://swapi.dev/api/people/7/"
-            }, 
-            {
-                "name": "R5-D4", 
-                "height": "97", 
-                "mass": "32", 
-                "hair_color": "n/a", 
-                "skin_color": "white, red", 
-                "eye_color": "red", 
-                "birth_year": "unknown", 
-                "gender": "n/a", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/"
-                ], 
-                "species": [
-                    "https://swapi.dev/api/species/2/"
-                ], 
-                "vehicles": [], 
-                "starships": [], 
-                "created": "2014-12-10T15:57:50.959000Z", 
-                "edited": "2014-12-20T21:17:50.321000Z", 
-                "url": "https://swapi.dev/api/people/8/"
-            }, 
-            {
-                "name": "Biggs Darklighter", 
-                "height": "183", 
-                "mass": "84", 
-                "hair_color": "black", 
-                "skin_color": "light", 
-                "eye_color": "brown", 
-                "birth_year": "24BBY", 
-                "gender": "male", 
-                "homeworld": "https://swapi.dev/api/planets/1/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/"
-                ], 
-                "species": [], 
-                "vehicles": [], 
-                "starships": [
-                    "https://swapi.dev/api/starships/12/"
-                ], 
-                "created": "2014-12-10T15:59:50.509000Z", 
-                "edited": "2014-12-20T21:17:50.323000Z", 
-                "url": "https://swapi.dev/api/people/9/"
-            }, 
-            {
-                "name": "Obi-Wan Kenobi", 
-                "height": "182", 
-                "mass": "77", 
-                "hair_color": "auburn, white", 
-                "skin_color": "fair", 
-                "eye_color": "blue-gray", 
-                "birth_year": "57BBY", 
-                "gender": "male", 
-                "homeworld": "https://swapi.dev/api/planets/20/", 
-                "films": [
-                    "https://swapi.dev/api/films/1/", 
-                    "https://swapi.dev/api/films/2/", 
-                    "https://swapi.dev/api/films/3/", 
-                    "https://swapi.dev/api/films/4/", 
-                    "https://swapi.dev/api/films/5/", 
-                    "https://swapi.dev/api/films/6/"
-                ], 
-                "species": [], 
-                "vehicles": [
-                    "https://swapi.dev/api/vehicles/38/"
-                ], 
-                "starships": [
-                    "https://swapi.dev/api/starships/48/", 
-                    "https://swapi.dev/api/starships/59/", 
-                    "https://swapi.dev/api/starships/64/", 
-                    "https://swapi.dev/api/starships/65/", 
-                    "https://swapi.dev/api/starships/74/"
-                ], 
-                "created": "2014-12-10T16:16:29.192000Z", 
-                "edited": "2014-12-20T21:17:50.325000Z", 
-                "url": "https://swapi.dev/api/people/10/"
-            }
-        ]
-    };
+    const [searchTerm, setSearchTerm] = useState('');
+    const [characters, setCharacters] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    if (planets.count !== 82) {
-        return (
-            <Section id="features">
-                <div className='p-10 md:mt-[-8rem]'>
+    useEffect(() => {
+        const fetchCharacters = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await fetch(`https://swapi.dev/api/people/?search=${searchTerm}`);
+                const data = await response.json();
+                setCharacters(data.results);
+            } catch (err) {
+                setError('Failed to fetch characters');
+            }
+            setLoading(false);
+        };
+
+        fetchCharacters();
+    }, [searchTerm]);
+
+    return (
+        <Section id="features">
+            <div className="absolute -top-[54%] left-1/2 w-[248%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[104%] rounded-3xl opacity-25">
+                <img src={heroBackground}
+                    className="w-full"
+                    width={1440}
+                    height={1800}
+                    alt="bg"/>
+            </div>
+            <div className='p-4 md:mt-[-6.5rem] md:p-10'>
+                <div className='flex justify-center items-center mb-4 md:mb-5'>
+                    <input 
+                        type="text" 
+                        className="w-full max-w-xs px-4 py-2 rounded-3xl bg-slate-500 text-black border-black active:outline-none placeholder-inherit opacity-50 transition hover:opacity-75" 
+                        placeholder="search..." 
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                {loading ? (
+                    <div className='text-center text-white'>Loading...</div>
+                ) : error ? (
+                    <div className='text-center text-red-500'>{error}</div>
+                ) : (
                     <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5'>
-                        {planets.results.map((character) => (
-                            <div key={character.name} className="bg-gray-800 p-6 rounded-lg shadow-lg">
-                                <h3 className="text-xl font-bold mb-5">{character.name}</h3>
+                        {characters.map((character) => (
+                            <div key={character.name} className="bg-gray-800 p-4 md:p-6 rounded-lg shadow-lg hover:bg-gray-900">
+                                <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-5">{character.name}</h3>
                                 <p><strong>Height:</strong> {character.height} cm</p>
                                 <p><strong>Mass:</strong> {character.mass} kg</p>
                                 <p><strong>Hair Color:</strong> {character.hair_color}</p>
@@ -288,44 +68,12 @@ const Characters = () => {
                             </div>
                         ))}
                     </div>
-                </div>
-                <div className="absolute -top-[54%] left-1/2 w-[248%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[104%] rounded-3xl opacity-25">
-                    <img src={heroBackground}
-                        className="w-full"
-                        width={1440}
-                        height={1800}
-                        alt="bg"/>
-                </div>
-                <BackgroundCircles />
-                <BottomLine />
-            </Section>
-        )
-    } else {
-        return(
-            <>
-            
-            <Section>
-
-            <div className='flex justify-center items-center'>
-                <div className='bg-gray-800/50 p-10 rounded-lg shadow-lg flex justify-center items-center h-52 w-96'>
-                    <h2 className='text-center'>Поиск был не корректен</h2>
-                </div>
-                <BackgroundCircles />
-                <BottomLine />
+                )}
             </div>
-            
-
-            </Section>
-            <div className="absolute -top-[54%] left-1/2 w-[248%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[104%] rounded-3xl opacity-25">
-                    <img src={heroBackground}
-                        className="w-full"
-                        width={1440}
-                        height={1800}
-                        alt="bg"/>
-            </div>
-            </>
-        )
-    }
+            <BackgroundCircles />
+            <BottomLine />
+        </Section>
+    );
 }
 
 export default Characters;

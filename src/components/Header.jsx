@@ -49,11 +49,7 @@ const Header = () => {
                                     {item.title}
                                 </a>
                             ))}
-                            <input 
-                                type="search" 
-                                className="mt-2 px-4 py-2 rounded-3xl bg-slate-500 text-black border-black active:outline-none lg:mt-0 lg:ml-3 placeholder-inherit opacity-50 transition hover:opacity-75" 
-                                placeholder="search..." 
-                            />
+                            
                             <HamburgerMenu />
                         </div>
                     </nav>
