@@ -40,17 +40,17 @@ export const navigation = [
   {
     id: "0",
     title: "Planets",
-    url: "/planets",
+    url: "planets",
   },
   {
     id: "1",
     title: "Characters",
-    url: "/characters",
+    url: "characters",
   },
   {
     id: "2",
     title: "Star.AI",
-    url: "/StarAi",
+    url: "star-wars-web/StarAi",
   },
   {
     id: "3",
