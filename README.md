@@ -1,8 +1,28 @@
-# React + Vite
+# 🌌 Star Wars Web Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Описание
 
-Currently, two official plugins are available:
+Это веб-приложение для отображения информации о персонажах и планетах из вселенной Star Wars, созданное с использованием React и Vite. Приложение использует Tailwind CSS для стилизации и Axios для получения данных из API.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Установка и запуск проекта
+
+Следуйте этим инструкциям для запуска проекта на вашем локальном компьютере.
+
+### 📋 Предварительные условия
+
+Убедитесь, что у вас установлены следующие программы:
+- [Node.js](https://nodejs.org/) (рекомендуемая версия 14.0.0 или выше)
+- [npm](https://www.npmjs.com/) (включен в поставку Node.js)
+
+### 🔧 Установка
+
+1. Клонируйте репозиторий на ваш локальный компьютер:
+   ```sh
+   git clone https://github.com/wakeupkstnv/star-wars-web.git
+
+2. Войдите в папку:
+   ```sh
+    cd star-wars-web
+3. Установите зависимости:
+   ```sh
+    npm run dev
